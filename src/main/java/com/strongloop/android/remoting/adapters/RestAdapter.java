@@ -177,15 +177,20 @@ public class RestAdapter extends Adapter {
         }
 
         Map<String, Object> combinedParameters = new HashMap<String, Object>();
-        if (constructorParameters != null) {
-            combinedParameters.putAll(constructorParameters);
-        }
+//        if (constructorParameters != null) {
+//            combinedParameters.putAll(constructorParameters);
+//        }
         if (parameters != null) {
             combinedParameters.putAll(parameters);
         }
 
         String verb = contract.getVerbForMethod(method);
-        String path = contract.getUrlForMethod(method, combinedParameters);
+        String path;
+        if (constructorParameters != null) {
+            path = contract.getUrlForMethod(method, constructorParameters);
+        } else {
+            path = contract.getUrlForMethod(method, combinedParameters);
+        }
         ParameterEncoding parameterEncoding = contract.getParameterEncodingForMethod(method);
 
         request(path, verb, combinedParameters, parameterEncoding, httpHandler);
