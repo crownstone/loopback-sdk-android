@@ -491,16 +491,6 @@ public class RestAdapter extends Adapter {
             Log.d(TAG, method + " " + url);
             if (requestParams != null)
                 Log.d(TAG, requestParams.toString());
-            else if (body != null && body.isRepeatable()) {
-                try {
-                    // Convert body stream to string
-                    // Based on http://stackoverflow.com/a/5445161/69868
-                    Scanner s = new Scanner(body.getContent()).useDelimiter("\\A");
-                    if (s.hasNext())
-                        Log.d(TAG, s.next());
-                } catch (IOException e) {
-                }
-            }
         }
 
         private Map<String, Object> flattenParameters(
