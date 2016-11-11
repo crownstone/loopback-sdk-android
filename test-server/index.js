@@ -1,4 +1,12 @@
+// Copyright IBM Corp. 2013,2014. All Rights Reserved.
+// Node module: loopback-sdk-android
+// This file is licensed under the MIT License.
+// License text available at https://opensource.org/licenses/MIT
+
 var path = require('path');
+var SG = require('strong-globalize');
+SG.SetRootDir(__dirname);
+var g = SG();
 var async = require('async');
 var loopback = require('loopback');
 
@@ -100,5 +108,5 @@ app.use(require('morgan')('loopback> :method :url :status'));
 app.enableAuth();
 app.use(loopback.rest());
 app.listen(3000, function() {
-  console.log('LoopBack test server listening on http://localhost:3000/');
+  console.log(g.f('{{LoopBack}} test server listening on {{http://localhost:3000/}}'));
 });
